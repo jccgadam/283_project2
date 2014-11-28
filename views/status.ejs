@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <!--   <link rel='stylesheet' href='/stylesheets/style.css' /> -->
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<script src="http://code.highcharts.com/themes/sand-signika.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+</head>
+  <body>
+    <%if(vmName==undefined)
+        {%>
+     <h2>Please select vm to show status<h2>   
+        <br>
+        <%}
+
+        else{%>
+
+        <h2><%=vmName%></h2>
+        <h3>Type:<%=type%></h3>
+
+        <%}
+        %>
+        <div class="dropdown" >
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" style :"position:absolute ">
+   Select VM to view
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    <%  for(var i=0;i<vms.length;i++)
+      {%>
+
+  <li role="presentation"><a role="menuitem" tabindex="-1" href="/status?name=<%=vms[i]%>&type=VirtualMachine"><%=vms[i]%></a></li>
+      
+      <%}
+    %>
+  </ul>
+</div>    
+  <div class="dropdown"  style="
+    position: absolute;
+    top: 109px;
+    left: 155px;
+">
+ <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+   Select Vhost to view
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    <%  for(var i=0;i<vhost.length;i++)
+      {%>
+
+  <li role="presentation"><a role="menuitem" tabindex="-1" href="/status?name=<%=vhost[i]%>&type=HostSystem"><%=vhost[i]%></a></li>
+      
+      <%}
+    %>
+  </ul>
+</div>
+    <script type="text/javascript">
+
+  $(function () {
+    $('#CPU_container').highcharts({
+        chart: {
+            zoomType: 'x'
+        },
+        title: {
+            text: 'CPU Usage Chart'
+        },
+        subtitle: {
+            text: document.ontouchstart === undefined ?
+                    'Click and drag in the plot area to zoom in' :
+                    'Pinch the chart to zoom in'
+        },
+        xAxis: {
+            type: 'datetime',
+            minRange: 30*60*1000
+        },
+        yAxis: {
+            title: {
+                text: 'value(%)'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            area: {
+                fillColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
+                    stops: [
+                       [0, Highcharts.getOptions().colors[1]],
+                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                    ]
+                },
+                marker: {
+                    radius: 2
+                },
+                lineWidth: 1,
+                states: {
+                    hover: {
+                        lineWidth: 1
+                    }
+                },
+                threshold: null
+            }
+        },
+
+        series: [{
+            type: 'area',
+            name: 'CPU Usage',
+            pointInterval: 5*60*1000,
+            pointStart: Date.UTC(20014, 10, 22),
+            data: [<%=cpu%>         
+            ]
+        }]
+    });
+});
+</script>
+<script type="text/javascript">
+  $(function () {
+    $('#mem_container').highcharts({
+        chart: {
+            zoomType: 'x'
+        },
+        title: {
+            text: 'Memory Usage Chart'
+        },
+        subtitle: {
+            text: document.ontouchstart === undefined ?
+                    'Click and drag in the plot area to zoom in' :
+                    'Pinch the chart to zoom in'
+        },
+        xAxis: {
+            type: 'datetime',
+            minRange: 30*60 *1000
+        },
+        yAxis: {
+            title: {
+                text: 'value(%)'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            area: {
+                fillColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
+                    stops: [
+                       [0, Highcharts.getOptions().colors[0]],
+                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                    ]
+                },
+                marker: {
+                    radius: 2
+                },
+                lineWidth: 1,
+                states: {
+                    hover: {
+                        lineWidth: 1
+                    }
+                },
+                threshold: null
+            }
+        },
+
+        series: [{
+            type: 'area',
+            name: 'Memory Usage',
+            pointInterval: 5*60*1000,
+            pointStart: Date.UTC(20014, 10, 22),
+            data: [<%=mem%>         
+            ]
+        }]
+    });
+});
+</script>
+<script type="text/javascript">
+  $(function () {
+    $('#net_container').highcharts({
+        chart: {
+            zoomType: 'x'
+        },
+        title: {
+            text: 'NetWork Usage Chart'
+        },
+        subtitle: {
+            text: document.ontouchstart === undefined ?
+                    'Click and drag in the plot area to zoom in' :
+                    'Pinch the chart to zoom in'
+        },
+        xAxis: {
+            type: 'datetime',
+            minRange: 30*60*1000 
+        },
+        yAxis: {
+            title: {
+                text: 'value(%)'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            area: {
+                fillColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
+                    stops: [
+                       [0, Highcharts.getOptions().colors[2]],
+                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                    ]
+                },
+                marker: {
+                    radius: 2
+                },
+                lineWidth: 1,
+                states: {
+                    hover: {
+                        lineWidth: 1
+                    }
+                },
+                threshold: null
+            }
+        },
+
+        series: [{
+            type: 'area',
+            name: 'Memory Usage',
+            pointInterval: 5*60*1000,
+            pointStart: Date.UTC(20014, 10, 22),
+            data: [<%=net%>         
+            ]
+        }]
+    });
+});
+</script>
+		<div id="CPU_container" style="width: 800px; height: 200px" ></div>
+        <br>
+		<div id="mem_container" style="width: 800px; height: 200px" ></div>
+        <br>
+		<div id="net_container" style="width: 800px; height: 200px" ></div>
+  </body>
+</html>

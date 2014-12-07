@@ -1,7 +1,7 @@
 var conn=require('./conn');
 var vms=[];
 var h=new Object();
-function getAllCpu(req,res){
+function getAllIO(req,res){
 	var vmSQL="select DISTINCT (vmName) from vmlogs where vmType='HostSystem'ORDER BY vmName;";
 	
 	
@@ -17,12 +17,13 @@ function getAllCpu(req,res){
 		
 	for(var  i=0;i<vms.length;i++){
 		
-		name=vms[i];
+		var name=vms[i];
 	    
 	
-		var memSQL="select value ,vmName from vmlogs where groupInfo='cpu' and vmName='"+name+"'ORDER BY timestamp";
+		var memSQL="select value ,vmName from vmlogs where groupInfo='IO' and vmName='"+name+"'ORDER BY timestamp";
 			  
 	conn.fetchData(memSQL,function(error,mems){
+		console.log(mems);
 		var tmp=[];
 		var name="";
 		name=mems[0].vmName;	
@@ -53,4 +54,4 @@ function getAllCpu(req,res){
 }
 
 
-exports.getAllCpu=getAllCpu;
+exports.getAllIO=getAllIO;

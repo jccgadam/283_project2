@@ -1,10 +1,10 @@
 var mysql = require('mysql');
 var conn = mysql.createConnection({
-	host : 'localhost',
-	user : 'root',
-	password : '12345678',
+	host : 'us-cdbr-iron-east-01.cleardb.net',
+	user : 'b84cf6af4ff1fa',
+	password : '6edb6b8d',
 	port : '3306',
-	database : 'cmpe283'
+	database : 'ad_4a646f70a83ab03'
 	});
 
 function fetchData(sqlQuery, callback){

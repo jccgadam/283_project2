@@ -18,12 +18,12 @@ function getAllMem(req,res){
 	for(var  i=0;i<vms.length;i++){
 		
 		name=vms[i];
-	    var tmp=[];
+	    
 	
 		var memSQL="select value ,vmName from vmlogs where groupInfo='mem' and vmName='"+name+"'ORDER BY timestamp";
 			  
 	conn.fetchData(memSQL,function(error,mems){
-		
+		var tmp=[];
 		var name="";
 		name=mems[0].vmName;	
 		

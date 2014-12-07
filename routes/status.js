@@ -8,6 +8,7 @@ var cpusql="select value from vmlogs where groupInfo='cpu' and vmName='"+name+"'
 var memsql="select value from vmlogs where groupInfo='mem' and vmName='"+name+"'ORDER BY timestamp";
 var netsql="select value from vmlogs where groupInfo='net' and vmName='"+name+"'ORDER BY timestamp";
 var vmsql ="select DISTINCT (vmName),vmType from vmlogs ORDER BY vmName;";
+var iosql="select value from vmlogs where groupInfo='io' and vmName='"+name+"'Order by timestamp";
 console.log(cpusql);
 conn.fetchData(vmsql,function(error,rows){
 	var vms=[];
@@ -50,19 +51,31 @@ conn.fetchData(cpusql,function(error,cpus){
 			net[i]=nets[i].value;
 			
 			}
-	res.render('status',{
-		vms:vms,
-		cpu:cpu,
-		mem:mem,
-		net:net,
-		vmName:name,
-		vhost:vhost,
-		type:type
-	});	
+			conn.fetchData(iosql,function(error,ios){
+				var io=[];
+				for (var i=0;i<ios.length;i++)
+					{
+					io[i]=ios[i].value;
+					}
+				
+				res.render('status',{
+					vms:vms,
+					cpu:cpu,
+					mem:mem,
+					net:net,
+					vmName:name,
+					vhost:vhost,
+					type:type,
+					ios:io
+				});		
+				
+				
+			})
+	
 		});
 	});
 });
-
+	
 });
 }
 

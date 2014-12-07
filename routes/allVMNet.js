@@ -2,6 +2,7 @@ var conn=require('./conn');
 var vms=[];
 var h=new Object();
 function getAllNet(req,res){
+	
 	var vmSQL="select DISTINCT (vmName) from vmlogs where vmType='VirtualMachine'ORDER BY vmName;";
 	
 	
@@ -30,20 +31,20 @@ function getAllNet(req,res){
 		for(var j=0;j<mems.length;j++)
 		{
 			tmp[j]=mems[j].value;
+			h[''+name+'']=tmp;
+			console.log("outside"+name+h[''+name+'']);
 		    
 		}
 		
-		console.log(name);
 		
-		h[''+name+'']=tmp;
-		console.log(h[''+name+'']);
-		//console.log(h['T06_VM01_Ubn01']);	
-		//console.log(h[''+name+'']);
-	    	
+		
+		
+		    	
 		
 	});
 	
 } 
+
 	res.render('vmNet',{
 		 h:h,
 		 vms:vms

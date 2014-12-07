@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-   <script src='http://getbootstrap.com/2.3.2/assets/css/bootstrap.css'></script>
+    <script src='http://getbootstrap.com/2.3.2/assets/css/bootstrap.css'></script>
    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
@@ -17,8 +17,9 @@
 </head>
   
 <body>
-    <h1>Overall VM CPU</h1>
-    <button type="button" class="btn btn-primary" data-loading-text="back to main "  onClick="window.location='/'" style="position: absolute;top: 23px;left: 300px;">Back to main</button>
+
+    <h1>Overall VM Network</h1>
+    <button type="button" class="btn btn-primary" data-loading-text="back to main "  onClick="window.location='/'" style="position: absolute;top: 23px;left: 350px;">Back to main</button>
 
     <% for (var i=0;i<vms.length;i++)
 {%>
@@ -35,7 +36,7 @@ $(function () {
             text: '<%=vms[i]%>'
         },
         subtitle: {
-            text: 'CPU Usage '
+            text: 'VM Cpu '
         },
         xAxis: {
            type: 'datetime',
@@ -44,7 +45,7 @@ $(function () {
         yAxis: {
             min: 0,
             title: {
-                text: 'CPU precentage'
+                text: 'Cpu precentage'
             }
         },
         tooltip: {
@@ -63,7 +64,7 @@ $(function () {
         },
         series: [{
             type: 'area',
-            name: 'CPU Usage',
+            name: 'Cpu Usage',
             pointInterval: 5*60*1000,
             pointStart: Date.UTC(20014, 10, 22),
             data: [<%=h[vms[i]]%>]

@@ -1,8 +1,8 @@
 var conn=require('./conn');
 var vms=[];
 var h=new Object();
-function getAllCPU(req,res){
-	var vmSQL="select DISTINCT (vmName) from vmlogs where vmType='VirtualMachine'ORDER BY vmName;";
+function getAllCpu(req,res){
+	var vmSQL="select DISTINCT (vmName) from vmlogs where vmType='HostSystem'ORDER BY vmName;";
 	
 	
 	conn.fetchData(vmSQL,function(error,rows){
@@ -18,12 +18,12 @@ function getAllCPU(req,res){
 	for(var  i=0;i<vms.length;i++){
 		
 		name=vms[i];
-	    var tmp=[];
+	    
 	
 		var memSQL="select value ,vmName from vmlogs where groupInfo='cpu' and vmName='"+name+"'ORDER BY timestamp";
 			  
 	conn.fetchData(memSQL,function(error,mems){
-		
+		var tmp=[];
 		var name="";
 		name=mems[0].vmName;	
 		
@@ -37,14 +37,13 @@ function getAllCPU(req,res){
 		
 		h[''+name+'']=tmp;
 		console.log(h[''+name+'']);
-		//console.log(h['T06_VM01_Ubn01']);	
-		//console.log(h[''+name+'']);
+		
 	    	
 		
 	});
 	
 } 
-	res.render('vmCPU',{
+	res.render('vhMem',{
 		 h:h,
 		 vms:vms
 	});
@@ -53,4 +52,4 @@ function getAllCPU(req,res){
 }
 
 
-exports.getAllCPU=getAllCPU;
+exports.getAllCpu=getAllCpu;

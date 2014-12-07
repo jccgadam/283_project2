@@ -15,6 +15,7 @@ var allVMNet= require('./routes/allVMNet');
 var allVhNet = require ('./routes/allVhNet');
 var allVhCpu = require ('./routes/allVhCpu');
 var allVhMem = require ('./routes/allVhMem');
+var allVhIO=require('./routes/allVhIO');
 var app = express();
 
 // all environments
@@ -36,11 +37,12 @@ if ('development' == app.get('env')) {
 app.get('/status',status.getStatus);
 app.get('/',status.getStatus);
 app.get('/allVMMem',allVMMem.getAllMem);
-app.get('/allVMCpu',allVMCPU.getAllCPU);
+app.get('/allVMCpu',allVMCPU.getAllCpu);
 app.get('/allVMNet',allVMNet.getAllNet);
 app.get('/allVhNet',allVhNet.getAllNet);
 app.get('/allVhCpu',allVhCpu.getAllCpu);
 app.get('/allVhMem',allVhMem.getAllMem);
+app.get('/allVhIO', allVhIO.getAllIO);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

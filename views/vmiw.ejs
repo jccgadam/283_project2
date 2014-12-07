@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-     <script src='http://getbootstrap.com/2.3.2/assets/css/bootstrap.css'></script>
+    <script src='http://getbootstrap.com/2.3.2/assets/css/bootstrap.css'></script>
    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
@@ -17,9 +17,9 @@
 </head>
   
 <body>
-    <h1>Overall VH Memory</h1>
-    <a href="allVhMemH">Vh memory hourly</a>
-       <button type="button" class="btn btn-primary" data-loading-text="back to main "  onClick="window.location='/'" style="position: absolute;top: 23px;left: 330px;">Back to main</button>
+    <h1>Overall VM I/O write</h1>
+    <a href="allVMIwH">VM I/O write houly</a>
+    <button type="button" class="btn btn-primary" data-loading-text="back to main "  onClick="window.location='/'" style="position: absolute;top: 23px;left: 330px;">Back to main</button>
 
     <% for (var i=0;i<vms.length;i++)
 {%>
@@ -28,7 +28,7 @@
 
 
 $(function () {
-    $('#<%=i%>').highcharts({
+    $('#<%=[i]%>').highcharts({
         chart: {
             type: 'column'
         },
@@ -36,7 +36,7 @@ $(function () {
             text: '<%=vms[i]%>'
         },
         subtitle: {
-            text: 'VH Memory '
+            text: 'I/O write Usage '
         },
         xAxis: {
            type: 'datetime',
@@ -45,7 +45,7 @@ $(function () {
         yAxis: {
             min: 0,
             title: {
-                text: 'Memory precentage'
+                text: 'kiloBytesPerSecond'
             }
         },
         tooltip: {
@@ -64,7 +64,7 @@ $(function () {
         },
         series: [{
             type: 'area',
-            name: 'Memory Usage',
+            name: 'I/O write Usage',
             pointInterval: 5*60*1000,
             pointStart: Date.UTC(20014, 11,22,22,54),
             data: [<%=h[vms[i]]%>]
@@ -73,16 +73,16 @@ $(function () {
     });
 });
  </script>
-<% if(i<2)
+<% if(i<3)
 
 {%>
-<div id='<%=i%>' style="width: 700px; height: 245px; position: absolute;left: 80px ;top:<%=i*280+100%>px;"></div>
+<div id='<%=[i]%>' style="width: 640px; height: 245px; position: absolute;left: 80px ;top:<%=i*280+100%>px;"></div>
 <br>
   <%}
 else 
     {%>
     
-<div id='<%=i%>' style="width: 700px; height: 245px; margin: 2 ;position: absolute;left: 820px;top:<%=i*280-480%>px;"></div>
+<div id='<%=[i]%>' style="width: 640px; height: 245px; margin: 2 ;position: absolute;left: 820px;top:<%=i*280-780%>px;"></div>
 <%}
 %>
       <%}

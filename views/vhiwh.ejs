@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-     <script src='http://getbootstrap.com/2.3.2/assets/css/bootstrap.css'></script>
+    <script src='http://getbootstrap.com/2.3.2/assets/css/bootstrap.css'></script>
    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
@@ -17,9 +17,8 @@
 </head>
   
 <body>
-    <h1>Overall VH Memory</h1>
-    <a href="allVhMemH">Vh memory hourly</a>
-       <button type="button" class="btn btn-primary" data-loading-text="back to main "  onClick="window.location='/'" style="position: absolute;top: 23px;left: 330px;">Back to main</button>
+    <h1>Overall VHost I/O write Hourly</h1>
+    <button type="button" class="btn btn-primary" data-loading-text="back to main "  onClick="window.location='/'" style="position: absolute;top: 23px;left: 480px;">Back to main</button>
 
     <% for (var i=0;i<vms.length;i++)
 {%>
@@ -28,7 +27,7 @@
 
 
 $(function () {
-    $('#<%=i%>').highcharts({
+    $('#<%=[i]%>').highcharts({
         chart: {
             type: 'column'
         },
@@ -36,7 +35,7 @@ $(function () {
             text: '<%=vms[i]%>'
         },
         subtitle: {
-            text: 'VH Memory '
+            text: 'I/O write Usage Hourly'
         },
         xAxis: {
            type: 'datetime',
@@ -45,13 +44,13 @@ $(function () {
         yAxis: {
             min: 0,
             title: {
-                text: 'Memory precentage'
+                text: 'kiloBytesPerSecond'
             }
         },
         tooltip: {
             headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
             pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+                '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
             footerFormat: '</table>',
             shared: true,
             useHTML: true
@@ -64,25 +63,25 @@ $(function () {
         },
         series: [{
             type: 'area',
-            name: 'Memory Usage',
+            name: 'I/O write Usage Hourly' ,
             pointInterval: 5*60*1000,
             pointStart: Date.UTC(20014, 11,22,22,54),
-            data: [<%=h[vms[i]]%>]
+            data: [<%=h2[vms[i]]%>]
 
         }]
     });
 });
  </script>
-<% if(i<2)
+<% if(i<3)
 
 {%>
-<div id='<%=i%>' style="width: 700px; height: 245px; position: absolute;left: 80px ;top:<%=i*280+100%>px;"></div>
+<div id='<%=[i]%>' style="width: 640px; height: 245px; position: absolute;left: 80px ;top:<%=i*280+60%>px;"></div>
 <br>
   <%}
 else 
     {%>
     
-<div id='<%=i%>' style="width: 700px; height: 245px; margin: 2 ;position: absolute;left: 820px;top:<%=i*280-480%>px;"></div>
+<div id='<%=[i]%>' style="width: 640px; height: 245px; margin: 2 ;position: absolute;left: 820px;top:<%=i*280-780%>px;"></div>
 <%}
 %>
       <%}

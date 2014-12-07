@@ -18,6 +18,7 @@
   
 <body>
     <h1>Overall VM Network</h1>
+    <a href="allVMNetH">VM Network Hourly</a>
     <button type="button" class="btn btn-primary" data-loading-text="back to main "  onClick="window.location='/'" style="position: absolute;top: 23px;left: 330px;">Back to main</button>
 
     <% for (var i=0;i<vms.length;i++)
@@ -35,7 +36,7 @@ $(function () {
             text: '<%=vms[i]%>'
         },
         subtitle: {
-            text: 'Network Usage '
+            text: 'Network Usage  '
         },
         xAxis: {
            type: 'datetime',
@@ -65,7 +66,7 @@ $(function () {
             type: 'area',
             name: 'Network Usage',
             pointInterval: 5*60*1000,
-            pointStart: Date.UTC(20014, 10, 22),
+            pointStart: Date.UTC(20014, 11,22,22,54),
             data: [<%=h[vms[i]]%>]
 
         }]
@@ -75,7 +76,7 @@ $(function () {
 <% if(i<3)
 
 {%>
-<div id='<%=vms[i]%>' style="width: 640px; height: 245px; position: absolute;left: 80px ;top:<%=i*280+60%>px;"></div>
+<div id='<%=vms[i]%>' style="width: 640px; height: 245px; position: absolute;left: 80px ;top:<%=i*280+100%>px;"></div>
 <br>
   <%}
 else 

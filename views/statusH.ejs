@@ -18,17 +18,17 @@
   <body>
     <%if(vmName==undefined)
         {%>
-     <h2>Please select vm to show status<h2>  
-      <a href="/statusH/">Hourly status</a> 
+     <h2>Please select vm to show status<h2>   
+        <a href="/status/">5mins status</a>
         <br>
         <%}
 
         else{%>
 
         <h2><%=vmName%></h2>
-         <a href="/statusH/">Hourly status</a>
+         <a href="/status/">5mins status</a>
         <h3>Type:<%=type%></h3>
-        
+
         <%}
         %>
         <div style="position:absolute; left:400px;top:50px">
@@ -64,7 +64,7 @@
     <%  for(var i=0;i<vms.length;i++)
       {%>
 
-  <li role="presentation"><a role="menuitem" tabindex="-1" href="/status?name=<%=vms[i]%>&type=VirtualMachine"><%=vms[i]%></a></li>
+  <li role="presentation"><a role="menuitem" tabindex="-1" href="/statusH?name=<%=vms[i]%>&type=VirtualMachine"><%=vms[i]%></a></li>
       
       <%}
     %>
@@ -83,7 +83,7 @@
     <%  for(var i=0;i<vhost.length;i++)
       {%>
 
-  <li role="presentation"><a role="menuitem" tabindex="-1" href="/status?name=<%=vhost[i]%>&type=HostSystem"><%=vhost[i]%></a></li>
+  <li role="presentation"><a role="menuitem" tabindex="-1" href="/statusH?name=<%=vhost[i]%>&type=HostSystem"><%=vhost[i]%></a></li>
       
       <%}
     %>

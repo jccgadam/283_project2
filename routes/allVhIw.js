@@ -2,7 +2,7 @@ var conn=require('./conn');
 var vms=[];
 var h=new Object();
 var h2=new Object();
-function getAllNet(req,res){
+function getAllIw(req,res){
 	var vmSQL="select DISTINCT (vmName) from vmlogs where vmType='HostSystem'ORDER BY vmName;";
 	
 	
@@ -21,7 +21,7 @@ function getAllNet(req,res){
 		name=vms[i];
 	    
 	
-		var memSQL="select value ,vmName from vmlogs where groupInfo='net' and vmName='"+name+"'ORDER BY timestamp";
+		var memSQL="select value ,vmName from vmlogs where groupInfo='datastore' and nameInfo='write' and vmName='"+name+"'ORDER BY timestamp";
 			  
 	conn.fetchData(memSQL,function(error,mems){
 		var tmp=[];
@@ -34,7 +34,7 @@ function getAllNet(req,res){
 		    
 		}
 		
-	
+		
 		
 		h[''+name+'']=tmp;
 		
@@ -45,14 +45,14 @@ function getAllNet(req,res){
 	});
 	
 } 
-	res.render('vhNet',{
+	res.render('vhiw',{
 		 h:h,
 		 vms:vms
 	});
 	
 	});
 }
-function getAllNetH(req,res){
+function getAllIwH(req,res){
 	var vmSQL="select DISTINCT (vmName) from vmlogshourly where vmType='HostSystem'ORDER BY vmName;";
 	
 	
@@ -71,7 +71,7 @@ function getAllNetH(req,res){
 		name=vms[i];
 	    
 	
-		var memSQL="select value ,vmName from vmlogshourly where groupInfo='net' and vmName='"+name+"'ORDER BY timestamp";
+		var memSQL="select value ,vmName from vmlogshourly where groupInfo='datastore' and nameInfo='write' and vmName='"+name+"'ORDER BY timestamp";
 			  
 	conn.fetchData(memSQL,function(error,mems){
 		var tmp=[];
@@ -84,7 +84,7 @@ function getAllNetH(req,res){
 		    
 		}
 		
-	
+		
 		
 		h2[''+name+'']=tmp;
 		
@@ -95,12 +95,12 @@ function getAllNetH(req,res){
 	});
 	
 } 
-	res.render('vhNeth',{
+	res.render('vhiwh',{
 		 h2:h2,
 		 vms:vms
 	});
 	
 	});
 }
-exports.getAllNetH=getAllNetH;
-exports.getAllNet=getAllNet;
+exports.getAllIwH=getAllIwH;
+exports.getAllIw=getAllIw;

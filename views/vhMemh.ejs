@@ -17,9 +17,9 @@
 </head>
   
 <body>
-    <h1>Overall VH Memory</h1>
-    <a href="allVhMemH">Vh memory hourly</a>
-       <button type="button" class="btn btn-primary" data-loading-text="back to main "  onClick="window.location='/'" style="position: absolute;top: 23px;left: 330px;">Back to main</button>
+    <h1>Overall VH Memory Hourly</h1>
+    <a href="/allvhMem">5 mins Vh Memory</a>
+       <button type="button" class="btn btn-primary" data-loading-text="back to main "  onClick="window.location='/'" style="position: absolute;top: 23px;left: 460px;">Back to main</button>
 
     <% for (var i=0;i<vms.length;i++)
 {%>
@@ -45,7 +45,7 @@ $(function () {
         yAxis: {
             min: 0,
             title: {
-                text: 'Memory precentage'
+                text: 'Memory precentage Hourly'
             }
         },
         tooltip: {
@@ -64,10 +64,10 @@ $(function () {
         },
         series: [{
             type: 'area',
-            name: 'Memory Usage',
+            name: 'Memory Usage Hourly',
             pointInterval: 5*60*1000,
             pointStart: Date.UTC(20014, 11,22,22,54),
-            data: [<%=h[vms[i]]%>]
+            data: [<%=h2[vms[i]]%>]
 
         }]
     });

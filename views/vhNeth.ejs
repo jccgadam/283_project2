@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-     <script src='http://getbootstrap.com/2.3.2/assets/css/bootstrap.css'></script>
+    <script src='http://getbootstrap.com/2.3.2/assets/css/bootstrap.css'></script>
    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
@@ -17,9 +17,9 @@
 </head>
   
 <body>
-    <h1>Overall VH Memory</h1>
-    <a href="allVhMemH">Vh memory hourly</a>
-       <button type="button" class="btn btn-primary" data-loading-text="back to main "  onClick="window.location='/'" style="position: absolute;top: 23px;left: 330px;">Back to main</button>
+    <h1>Overall VH Network Hourly</h1>
+    <a href="allVhNet">5 mins Vh Network</a>
+    <button type="button" class="btn btn-primary" data-loading-text="back to main " onClick="window.location='/'"style="position: absolute;top: 23px;left: 460px;">Back to main</button>
 
     <% for (var i=0;i<vms.length;i++)
 {%>
@@ -36,7 +36,7 @@ $(function () {
             text: '<%=vms[i]%>'
         },
         subtitle: {
-            text: 'VH Memory '
+            text: 'VH Network Hourly '
         },
         xAxis: {
            type: 'datetime',
@@ -45,7 +45,7 @@ $(function () {
         yAxis: {
             min: 0,
             title: {
-                text: 'Memory precentage'
+                text: 'Network precentage'
             }
         },
         tooltip: {
@@ -64,10 +64,10 @@ $(function () {
         },
         series: [{
             type: 'area',
-            name: 'Memory Usage',
+            name: 'Network Usage',
             pointInterval: 5*60*1000,
             pointStart: Date.UTC(20014, 11,22,22,54),
-            data: [<%=h[vms[i]]%>]
+            data: [<%=h2[vms[i]]%>]
 
         }]
     });

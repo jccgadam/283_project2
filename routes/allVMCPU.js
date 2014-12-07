@@ -4,8 +4,6 @@ var h=new Object();
 var h2=new Object();
 function getAllCpu(req,res){
 	var vmSQL="select DISTINCT (vmName) from vmlogs where vmType='VirtualMachine'ORDER BY vmName;";
-	
-	
 	conn.fetchData(vmSQL,function(error,rows){
 		
 		//console.log(rows.length);
@@ -14,14 +12,10 @@ function getAllCpu(req,res){
 		vms[i]=rows[i].vmName;
 					}
 		
-
-		
 	for(var  i=0;i<vms.length;i++){
 		
 		name=vms[i];
-	    
-	
-		var memSQL="select value ,vmName from vmlogs where groupInfo='cpu' and vmName='"+name+"'ORDER BY timestamp";
+	  		var memSQL="select value ,vmName from vmlogs where groupInfo='cpu' and vmName='"+name+"'ORDER BY timestamp";
 			  
 	conn.fetchData(memSQL,function(error,mems){
 		var tmp=[];
@@ -34,12 +28,7 @@ function getAllCpu(req,res){
 		    
 		}
 		
-		
-		
-		h[''+name+'']=tmp;
-		
-		
-	    	
+		h[''+name+'']=tmp; 	
 		
 	});
 	

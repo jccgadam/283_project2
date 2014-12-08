@@ -18,7 +18,7 @@
   
 <body>
     <h1>Overall VH CPU Hourly</h1>
-    <a href="/allvhCPU">5mins vh CPU</a>
+    <a href="/allvhCPU">alltime vh CPU</a>
    <button type="button" class="btn btn-primary" data-loading-text="back to main "   onClick="window.location='/'" style="position: absolute;top: 23px;left: 400px;">Back to main</button>
     <% for (var i=0;i<vms.length;i++)
 {%>
@@ -64,8 +64,8 @@ $(function () {
         series: [{
             type: 'area',
             name: 'CPU Usage Hourly',
-            pointInterval: 5*60*1000,
-            pointStart: Date.UTC(20014, 11,06,22,54),
+            pointInterval: 3600*60*60*1000,
+            pointStart: Date.UTC(20014, 11,06,22,54,0),
             data: [<%=h2[vms[i]]%>]
 
         }]

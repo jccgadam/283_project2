@@ -50,7 +50,7 @@
              <button type="button" class="btn btn-primary" data-loading-text="back to main "  onClick="window.location='/allVhNet'" style="position: absolute;margin-left:-100px;margin-top:50px;">All Vhost Network Status</button>
 
             <button type="button" class="btn btn-primary" data-loading-text="back to main "  onClick="window.location='/allVhIr'" style="position: absolute;margin-left:100px;margin-top:50px;">All Vhost IO read Status</button>
-             <button type="button" class="btn btn-primary" data-loading-text="back to main "  onClick="window.location='/allVhIr'" style="position: absolute;margin-left:290px;margin-top:50px;">All Vhost IO write Status</button>
+             <button type="button" class="btn btn-primary" data-loading-text="back to main "  onClick="window.location='/allVhIw'" style="position: absolute;margin-left:290px;margin-top:50px;">All Vhost IO write Status</button>
             </div>
             
 
@@ -141,8 +141,8 @@
         series: [{
             type: 'area',
             name: 'CPU Usage',
-            pointInterval: 5*60*1000,
-            pointStart: Date.UTC(20014, 11,06,22,54),
+            pointInterval: 5*1000,
+            pointStart: Date.UTC(20014, 11,06,22,54,0),
             data: [<%=cpu%>         
             ]
         }]
@@ -200,8 +200,8 @@
         series: [{
             type: 'area',
             name: 'Memory Usage',
-            pointInterval: 5*60*1000,
-            pointStart: Date.UTC(20014, 11,06,22,54),
+            pointInterval: 5*1000,
+            pointStart: Date.UTC(20014, 11,06,22,54,0),
             data: [<%=mem%>         
             ]
         }]
@@ -259,8 +259,8 @@
         series: [{
             type: 'area',
             name: 'Memory Usage',
-            pointInterval: 5*60*1000,
-            pointStart: Date.UTC(20014, 11,06,22,54),
+            pointInterval: 5*1000,
+            pointStart: Date.UTC(20014, 11,06,22,54,0),
             data: [<%=net%>         
             ]
         }]
@@ -318,8 +318,8 @@
         series: [{
             type: 'area',
             name: 'IO read Usage',
-            pointInterval: 5*60*1000,
-            pointStart: Date.UTC(20014, 11,06,22,54),
+            pointInterval: 5*1000,
+            pointStart: Date.UTC(20014, 11,06,22,54,0),
             data: [<%=read%>         
             ]
         }]
@@ -377,8 +377,8 @@
         series: [{
             type: 'area',
             name: 'IO write Usage',
-            pointInterval: 5*60*1000,
-            pointStart: Date.UTC(20014, 11,06,22,54),
+            pointInterval: 5*1000,
+            pointStart: Date.UTC(20014, 11,06,22,54,0),
             data: [<%=write%>         
             ]
         }]

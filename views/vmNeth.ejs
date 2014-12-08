@@ -18,7 +18,7 @@
   
 <body>
     <h1>Overall VM Network Hourly</h1>
-    <a href="allVMCpu">5 min VM Network</a>
+    <a href="allVMCpu">alltime VM Network</a>
     <button type="button" class="btn btn-primary" data-loading-text="back to main "  onClick="window.location='/'" style="position: absolute;top: 23px;left: 440px;">Back to main</button>
 
     <% for (var i=0;i<vms.length;i++)
@@ -65,8 +65,8 @@ $(function () {
         series: [{
             type: 'area',
             name: 'Network Usage',
-            pointInterval: 5*60*1000,
-            pointStart: Date.UTC(20014, 11,06,22,54),
+            pointInterval: 5*1000,
+            pointStart: Date.UTC(20014, 11,06,22,54,0),
             data: [<%=h2[vms[i]]%>]
 
         }]

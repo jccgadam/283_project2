@@ -18,7 +18,7 @@
   
 <body>
     <h1>Overall Vh I/O read Horuly</h1>
-    <a href="allvhir">5 mins Vh I/O read</a>
+    <a href="allvhir">alltime Vh I/O read</a>
     <button type="button" class="btn btn-primary" data-loading-text="back to main "  onClick="window.location='/'" style="position: absolute;top: 23px;left: 450px;">Back to main</button>
 
     <% for (var i=0;i<vms.length;i++)
@@ -65,8 +65,8 @@ $(function () {
         series: [{
             type: 'area',
             name: 'I/O read Usage',
-            pointInterval: 5*60*1000,
-            pointStart: Date.UTC(20014, 11,06,22,54),
+            pointInterval: 3600*60**1000,
+            pointStart: Date.UTC(20014, 11,06,22,54,0),
             data: [<%=h2[vms[i]]%>]
 
         }]
